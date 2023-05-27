@@ -3,7 +3,7 @@ export interface DanceStep  {
     name: string;
     level: number;     
     description?: string;
-    iconURL?: string;
+    iconURL: string;
     videoURL?: string;
     createdAt?: Date;
     updatedAt?: Date;

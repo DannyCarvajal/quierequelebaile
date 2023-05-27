@@ -1,28 +1,28 @@
 // Vendors
 import Image from "next/image";
+// Components
+import { CurrentStep, StepCard } from "@components";
 // Hooks
-import { useDanceSteps } from "@hooks";
+import { useDanceGame } from "@hooks";
+// Types
+import { DanceStep } from "@types";
 
 const PracticePage = () => {
-  /* Initialize state */
-  const { danceSteps } = useDanceSteps();
+  /* Hook */
+  const { currStep, currentStepIndex, randomSteps } = useDanceGame();
 
   return (
-      <div className="flex justify-center">
-        Game page
-        <ul>
-          {danceSteps?.map((step) => (
-            <li key={step.id}>
-              {step.name}
-              {step?.iconURL && (
-                <div>
-                  <Image width="150" className="rounded-full object-cover" height="150" src={step.iconURL} alt={step.name} />
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+    <div className="flex justify-center h-container">
+      <div className="flex justify-center items-center">
+        <CurrentStep danceStep={currStep}/>
+        <div className="flex flex-col-reverse justify-center">
+          {Array.from([1, 2, 3]).map((_, index) => { 
+            const step = randomSteps[currentStepIndex + index + 1];
+            return step? <StepCard key={step?.id || index} danceStep={step} /> : null;
+          })}
+        </div>
       </div>
+    </div>
   );
 };
 

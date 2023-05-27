@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-      <div className="flex w-full flex-wrap lg:flex-nowrap h-[calc(100vh-80px)] justify-between items-center bg-primary-purple">
+      <div className="flex w-full flex-wrap lg:flex-nowrap h-container justify-between items-center bg-primary-purple">
         <div className="self-start mt-28 pl-12">
           <h1 className="font-extrabold text-7xl max-w-2xl ">QUIERE QUE LE BAILE?</h1>
           <p className="font-light mt-8 text-2xl">

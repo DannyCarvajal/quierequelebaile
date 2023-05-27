@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+  .h-container{
+    /* Height of the Navbar 80px */
+    height: calc(100vh - 80px);
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -25,9 +32,6 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
-#__next{
-  height: 100vh;
 }
 
 body h1 {
