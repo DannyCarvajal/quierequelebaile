@@ -1,13 +1,9 @@
 // Vendors
 import Image from "next/image";
 import Link from "next/link";
-// Components
-import { Navbar } from "@components";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
       <div className="flex w-full flex-wrap lg:flex-nowrap h-[calc(100vh-80px)] justify-between items-center bg-primary-purple">
         <div className="self-start mt-28 pl-12">
           <h1 className="font-extrabold text-7xl max-w-2xl ">QUIERE QUE LE BAILE?</h1>
@@ -21,6 +17,5 @@ export default function Home() {
         </div>
         <Image src="/dancers.png" alt="dancers" height="650" width="650" className="mb-20"/>
       </div>
-    </>
   )
 }

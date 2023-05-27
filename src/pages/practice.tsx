@@ -2,15 +2,12 @@
 import Image from "next/image";
 // Hooks
 import { useDanceSteps } from "@hooks";
-import { Navbar } from "@components";
 
 const PracticePage = () => {
   /* Initialize state */
   const { danceSteps } = useDanceSteps();
 
   return (
-    <>
-      <Navbar/>
       <div className="flex justify-center">
         Game page
         <ul>
@@ -26,7 +23,6 @@ const PracticePage = () => {
           ))}
         </ul>
       </div>
-    </>
   );
 };
 
