@@ -16,7 +16,7 @@ const PracticePage = () => {
         <button
           className={`${
             startGame ? "bg-primary-purple" : "bg-green-700"
-          } btn bg-primary-purple" onClick={() => setStartGame(!startGame) absolute bottom-8 left-8 w-32 md:bottom-12 md:left-12 md:w-40 lg:bottom-16 lg:left-24 lg:w-48`}
+          } btn absolute bottom-8 left-8 w-32 bg-primary-purple md:bottom-12 md:left-12 md:w-40 lg:bottom-40 lg:left-24 lg:w-48`}
           onClick={() => setStartGame(!startGame)}
         >
           {startGame ? "Pausar" : "Empezar"}

@@ -10,7 +10,6 @@ export default async function danceSteps(req: NextApiRequest, res: NextApiRespon
     }
 
     const steps = await prisma.danceStep.findMany();
-    console.log({ steps });
     res.status(200).json(steps);
   } catch (err) {
     console.error(err);
