@@ -5,16 +5,16 @@ import { useDanceSteps } from "@hooks";
 // Types
 import { DanceStep } from "@types";
 
-const generateGameSteps = (danceSteps: DanceStep[], includedLevels: number[], random = true) => { 
-  if (!danceSteps) return []
+const generateGameSteps = (danceSteps: DanceStep[], includedLevels: number[], random = true) => {
+  if (!danceSteps) return [];
   const MAX_STEPS = 10;
 
-  const randomSteps: DanceStep[] = []
+  const randomSteps: DanceStep[] = [];
   const allowedLevels = danceSteps?.filter((step) => includedLevels.includes(step.level));
 
-  if (!random) return allowedLevels
+  if (!random) return allowedLevels;
 
-  while (randomSteps.length < MAX_STEPS) { 
+  while (randomSteps.length < MAX_STEPS) {
     const randomStep = allowedLevels[Math.floor(Math.random() * allowedLevels.length)];
 
     const wasRecentlyUsed = randomSteps?.slice(-3).includes(randomStep);
@@ -28,35 +28,32 @@ const generateGameSteps = (danceSteps: DanceStep[], includedLevels: number[], ra
   }
 
   return randomSteps;
-}
+};
 
-const useDanceGame = () => { 
+const useDanceGame = () => {
   /* Constants */
-  const SEC_TIME_PER_STEP = 4;
+  const SEC_TIME_PER_STEP = 5;
 
   /* Initialize state */
   const { danceSteps } = useDanceSteps();
   const [randomSteps, setRandomSteps] = useState<DanceStep[]>([]);
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
+  const [startGame, setStartGame] = useState<boolean>(false);
 
   const currStep = randomSteps?.[currentStepIndex];
+  const incomingSteps = randomSteps?.slice(currentStepIndex + 1, currentStepIndex + 4);
 
   /* Generate new game */
-  useEffect(() => { 
-    if (!danceSteps || randomSteps.length) return
-
-    const allowedLevels = [0, 1, 2];
-    const newGame = generateGameSteps(danceSteps, allowedLevels);
-    console.log({newGame})
-    setRandomSteps(newGame);
-
+  useEffect(() => {
+    if (!danceSteps || randomSteps.length) return;
+    updateGame();
     //eslint-disable-next-line
   }, [danceSteps]);
 
   /* Update curr step */
   useEffect(() => {
+    if (!startGame) return;
     const timer = setTimeout(() => {
-      console.log({ currentStepIndex, currStep })
       // If we're at the last step, reset the game
       if (currentStepIndex === randomSteps.length - 1) {
         clearTimeout(timer);
@@ -67,9 +64,25 @@ const useDanceGame = () => {
 
     return () => clearTimeout(timer);
     //eslint-disable-next-line
-  }, [currentStepIndex]);
+  }, [currentStepIndex, startGame]);
 
-  return { currStep, currentStepIndex, randomSteps };
-}
+  /* Reset game */
+  useEffect(() => {
+    if (startGame && randomSteps.length) return;
+
+    setCurrentStepIndex(0);
+    updateGame();
+    //eslint-disable-next-line
+  }, [startGame]);
+
+  /* Updaters */
+  const updateGame = () => {
+    const allowedLevels = [0, 1, 2];
+    const newGame = generateGameSteps(danceSteps, allowedLevels);
+    setRandomSteps(newGame);
+  };
+
+  return { danceSteps, currStep, incomingSteps, startGame, setStartGame };
+};
 
 export default useDanceGame;
