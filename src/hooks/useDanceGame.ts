@@ -57,6 +57,7 @@ const useDanceGame = () => {
       // If we're at the last step, reset the game
       if (currentStepIndex === randomSteps.length - 1) {
         clearTimeout(timer);
+        setStartGame(false);
         return;
       }
       setCurrentStepIndex((prevStep) => prevStep + 1);
