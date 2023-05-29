@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-  .h-container{
+@layer components {
+  .h-container {
     /* Height of the Navbar 80px */
     height: calc(100vh - 80px);
+  }
+
+  .center {
+    @apply flex items-center justify-center;
+  }
+
+  .card-shadow {
+    background: linear-gradient(108.46deg, rgba(240, 250, 255, 0.2244) 0%, rgba(240, 250, 255, 0.1584) 100%);
+    box-shadow: -15px 25px 40px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn {
+    @apply rounded-md p-2 text-xl;
   }
 }
 
@@ -24,14 +38,9 @@
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 body h1 {
