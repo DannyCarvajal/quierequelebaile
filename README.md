@@ -1,4 +1,4 @@
-## Quiere Que le Baile?
+## Quiere Que le Baile 🪩?
 
 Web-based application that allows users to learn and practice dance steps. The platform provides a user-friendly interface to explore different dance steps, and practice them. This is part of a coding challenge to be part of [Makers](https://www.makers.build "Makers") _Coding Fellowship_
 
@@ -18,10 +18,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Technologies used
 
 `Next.js`: A React framework for building server-side rendered and statically generated web applications, used Next API as well.
+
 `Tailwind CSS`: A utility-first CSS framework for rapidly building custom user interfaces.
-Vercel: A cloud platform for deploying Next.js applications.
+
+`Vercel`: A cloud platform for deploying Next.js applications.
+
 `PostgreSQL`: A powerful, open-source relational database system.
+
 `Prisma`: A database toolkit and Object-Relational Mapping (ORM) for Node.js.
+
 `SWR`: A React hook library for data fetching and synchronization.
 
 ##Future Ideas
