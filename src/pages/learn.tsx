@@ -12,7 +12,7 @@ const LearnPage = () => {
   // Group steps by level
   const levels = [0, 1, 2];
   const stepsByLevel = levels.map((level) => danceSteps?.filter((step) => step.level === level));
-  const shortId = "d3Tek5GJGuo";
+  const defaultShortId = "d3Tek5GJGuo";
 
   return (
     <div className="mx-auto mt-8 max-w-[90%] p-4">
@@ -35,7 +35,7 @@ const LearnPage = () => {
                   <iframe
                     width="100%"
                     height="100%"
-                    src={`https://www.youtube.com/embed/${shortId}?showinfo=0`}
+                    src={`https://www.youtube.com/embed/${step?.videoURL || defaultShortId}?showinfo=0`}
                     title={step.name}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
