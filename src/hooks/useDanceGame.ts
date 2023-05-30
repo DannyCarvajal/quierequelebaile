@@ -32,7 +32,7 @@ const generateGameSteps = (danceSteps: DanceStep[], includedLevels: number[], ra
 
 const useDanceGame = () => {
   /* Constants */
-  const SEC_TIME_PER_STEP = 20;
+  const SEC_TIME_PER_STEP = 10;
 
   /* Initialize state */
   const { danceSteps, isLoading } = useDanceSteps();
