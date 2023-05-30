@@ -7,7 +7,7 @@ import { DanceStep } from "@types";
 
 const generateGameSteps = (danceSteps: DanceStep[], includedLevels: number[], random = true) => {
   if (!danceSteps) return [];
-  const MAX_STEPS = 10;
+  const MAX_STEPS = 15;
 
   const randomSteps: DanceStep[] = [];
   const allowedLevels = danceSteps?.filter((step) => includedLevels.includes(step.level));
@@ -32,12 +32,13 @@ const generateGameSteps = (danceSteps: DanceStep[], includedLevels: number[], ra
 
 const useDanceGame = () => {
   /* Constants */
-  const SEC_TIME_PER_STEP = 5;
+  const SEC_TIME_PER_STEP = 20;
 
   /* Initialize state */
-  const { danceSteps } = useDanceSteps();
+  const { danceSteps, isLoading } = useDanceSteps();
   const [randomSteps, setRandomSteps] = useState<DanceStep[]>([]);
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
+  const [percentageCurrentStep, setPercentageCurrentStep] = useState<number>(0);
   const [startGame, setStartGame] = useState<boolean>(false);
 
   const currStep = randomSteps?.[currentStepIndex];
@@ -76,6 +77,19 @@ const useDanceGame = () => {
     //eslint-disable-next-line
   }, [startGame]);
 
+  /* Update percentage */
+  useEffect(() => {
+    if (!startGame) return;
+    setPercentageCurrentStep(0);
+
+    const timer = setInterval(() => {
+      setPercentageCurrentStep((prevPercentage) => prevPercentage + 10);
+    }, (SEC_TIME_PER_STEP * 1000) / 10);
+
+    return () => clearInterval(timer);
+    //eslint-disable-next-line
+  }, [currentStepIndex, startGame]);
+
   /* Updaters */
   const updateGame = () => {
     const allowedLevels = [0, 1, 2];
@@ -83,7 +97,7 @@ const useDanceGame = () => {
     setRandomSteps(newGame);
   };
 
-  return { danceSteps, currStep, incomingSteps, startGame, setStartGame };
+  return { isLoading, danceSteps, currStep, percentageCurrentStep, incomingSteps, startGame, setStartGame };
 };
 
 export default useDanceGame;
