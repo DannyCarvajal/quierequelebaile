@@ -29,7 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 `SWR`: A React hook library for data fetching and synchronization.
 
-##Future Ideas
+## Future Ideas
 
 Here are some possible future ideas to enhance the Dance Steps Learning Platform:
 
